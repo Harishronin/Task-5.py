@@ -27,13 +27,14 @@ Program3:using python lambda function create a fibonacci series from 1 to 50 ele
 date:02-Aug-2024
 """
 
+from functools import reduce
 
-def fibonacci(count):
-	fib_list = [0, 1]
+# Generate the Fibonacci series using lambda and reduce
+fib_series = reduce(
+    lambda acc, _: acc + [acc[-1] + acc[-2]],
+    range(50 - 2),  # 50 elements total, we already have 2 seed values
+    [0, 1]          # Initial seed values for Fibonacci
+)
 
-	any(map(lambda _: fib_list.append(sum(fib_list[-2:])),
-										range(2, count)))
-
-	return fib_list[:count]
-
-print(fibonacci(10))
+# Output the series
+print(fib_series)
